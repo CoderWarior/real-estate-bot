@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Real Estate MK</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            color: #17202a;
+        }
+
+        .app {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            margin: 0 0 6px;
+            font-size: 28px;
+        }
+
+        .header p {
+            margin: 0;
+            color: #6b7280;
+        }
+
+        .section {
+            margin-bottom: 22px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .property-types {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        button {
+            border: none;
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .property-button {
+            background: white;
+            border: 1px solid #e1e5ea;
+        }
+
+        .property-button.active {
+            background: #2481cc;
+            color: white;
+            border-color: #2481cc;
+        }
+
+        .filters {
+            background: white;
+            border-radius: 16px;
+            padding: 16px;
+            border: 1px solid #e1e5ea;
+        }
+
+        .field {
+            margin-bottom: 14px;
+        }
+
+        .field:last-child {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 6px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 13px;
+            border-radius: 10px;
+            border: 1px solid #d7dce2;
+            font-size: 16px;
+            background: white;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .search-button {
+            width: 100%;
+            background: #2481cc;
+            color: white;
+            font-weight: bold;
+            font-size: 17px;
+            margin-top: 18px;
+        }
+
+        .search-button:active {
+            transform: scale(0.99);
+        }
+
+        .status {
+            margin-top: 16px;
+            padding: 14px;
+            background: #eef6ff;
+            border-radius: 12px;
+            color: #245b85;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <div class="header">
+        <h1>🏠 Real Estate MK</h1>
+        <p>Find properties across North Macedonia</p>
+    </div>
+
+    <div class="section">
+
+        <div class="section-title">
+            Property type
+        </div>
+
+        <div class="property-types">
+
+            <button
+                class="property-button active"
+                data-type="apartments"
+            >
+                🏠 Apartments
+            </button>
+
+            <button
+                class="property-button"
+                data-type="houses"
+            >
+                🏡 Houses
+            </button>
+
+            <button
+                class="property-button"
+                data-type="land"
+            >
+                🌳 Land
+            </button>
+
+            <button
+                class="property-button"
+                data-type="commercial"
+            >
+                🏢 Commercial
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="section">
+
+        <div class="section-title">
+            Search filters
+        </div>
+
+        <div class="filters">
+
+            <div class="field">
+
+                <label for="location">
+                    Location
+                </label>
+
+                <select id="location">
+
+                    <option value="">
+                        All North Macedonia
+                    </option>
+
+                    <option value="skopje">
+                        Skopje
+                    </option>
+
+                    <option value="centar">
+                        Centar
+                    </option>
+
+                    <option value="karpos">
+                        Karpoš
+                    </option>
+
+                    <option value="aerodrom">
+                        Aerodrom
+                    </option>
+
+                    <option value="kisela-voda">
+                        Kisela Voda
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="field">
+
+                <label>
+                    Price (€)
+                </label>
+
+                <div class="row">
+
+                    <input
+                        id="minPrice"
+                        type="number"
+                        placeholder="Min"
+                    >
+
+                    <input
+                        id="maxPrice"
+                        type="number"
+                        placeholder="Max"
+                    >
+
+                </div>
+
+            </div>
+
+            <div class="field">
+
+                <label>
+                    Area (m²)
+                </label>
+
+                <div class="row">
+
+                    <input
+                        id="minArea"
+                        type="number"
+                        placeholder="Min"
+                    >
+
+                    <input
+                        id="maxArea"
+                        type="number"
+                        placeholder="Max"
+                    >
+
+                </div>
+
+            </div>
+
+            <div class="field">
+
+                <label for="rooms">
+                    Rooms
+                </label>
+
+                <select id="rooms">
+
+                    <option value="">
+                        Any
+                    </option>
+
+                    <option value="1">
+                        1 room
+                    </option>
+
+                    <option value="2">
+                        2 rooms
+                    </option>
+
+                    <option value="3">
+                        3 rooms
+                    </option>
+
+                    <option value="4">
+                        4 rooms
+                    </option>
+
+                    <option value="5">
+                        5+ rooms
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="field">
+
+                <label for="floor">
+                    Floor
+                </label>
+
+                <select id="floor">
+
+                    <option value="">
+                        Any floor
+                    </option>
+
+                    <option value="ground">
+                        Ground floor
+                    </option>
+
+                    <option value="1">
+                        1st
+                    </option>
+
+                    <option value="2">
+                        2nd
+                    </option>
+
+                    <option value="3">
+                        3rd
+                    </option>
+
+                    <option value="4">
+                        4th
+                    </option>
+
+                    <option value="5">
+                        5th
+                    </option>
+
+                    <option value="6">
+                        6th+
+                    </option>
+
+                </select>
+
+            </div>
+
+            <button
+                id="searchButton"
+                class="search-button"
+            >
+                🔎 Search properties
+            </button>
+
+        </div>
+
+        <div
+            id="status"
+            class="status"
+        ></div>
+
+    </div>
+
+</div>
+
+<script>
+
+    const propertyButtons =
+        document.querySelectorAll(".property-button");
+
+    const searchButton =
+        document.getElementById("searchButton");
+
+    const status =
+        document.getElementById("status");
+
+    let selectedType = "apartments";
+
+
+    propertyButtons.forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            propertyButtons.forEach(item => {
+                item.classList.remove("active");
+            });
+
+            button.classList.add("active");
+
+            selectedType =
+                button.dataset.type;
+
+        });
+
+    });
+
+
+    searchButton.addEventListener("click", () => {
+
+        const location =
+            document.getElementById("location").value;
+
+        const minPrice =
+            document.getElementById("minPrice").value;
+
+        const maxPrice =
+            document.getElementById("maxPrice").value;
+
+        const minArea =
+            document.getElementById("minArea").value;
+
+        const maxArea =
+            document.getElementById("maxArea").value;
+
+        const rooms =
+            document.getElementById("rooms").value;
+
+        const floor =
+            document.getElementById("floor").value;
+
+
+        status.style.display = "block";
+
+        status.innerHTML =
+            "Searching for " +
+            selectedType +
+            " properties...";
+
+        console.log({
+            selectedType,
+            location,
+            minPrice,
+            maxPrice,
+            minArea,
+            maxArea,
+            rooms,
+            floor
+        });
+
+    });
+
+</script>
+
+</body>
+</html>
